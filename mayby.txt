@@ -1,0 +1,41 @@
+import requests
+import jsonpath
+import jsoncreate
+import json
+
+
+def test_add_new_data():
+    App_url="http://thetestingworldapi.com/api/studentsDetails"
+    f=jsoncreate.json1111#open('/Users/oleksandrlitvincuk/Desktop/Python/API/qwerty.json','r')
+    #request_json=json.loads(f.read())
+    response=requests.post(App_url,f)
+    print(response.text)
+    id=jsonpath.jsonpath(response.json(), 'id')
+    print('my number',id[0])
+
+
+
+
+
+
+
+
+
+    techapi_url="http://thetestingworldapi.com/api/technicalskills"
+    f=open('/Users/oleksandrlitvincuk/Desktop/Python/API/querty2.json')
+    request_json = json.loads(f.read())
+    request_json['id']=int(id[0])
+    request_json['st_id'] = id[0]
+    response = requests.post(techapi_url, request_json)
+   # assert 200 == response.status_code
+    print(response.text)
+
+
+    addres_url="http://thetestingworldapi.com/api/addresses"
+    f=open('/Users/oleksandrlitvincuk/Desktop/Python/API/querty2.json')
+    request_json = json.loads(f.read())
+
+    #request_json['st_id'] = id[0]
+    response = requests.post(addres_url, request_json)
+    print(response.text)
+    #assert 200 == response.status_code
